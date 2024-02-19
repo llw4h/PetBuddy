@@ -11,7 +11,8 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/v1/pets")
+@CrossOrigin(origins = "http://localhost:5173")
+//@RequestMapping("/api/v1/pets")
 public class AnimalController {
     @Autowired
     private AnimalService animalService;
@@ -27,11 +28,11 @@ public class AnimalController {
     }
 
     @GetMapping("/pet/{id}")
-    public ResponseEntity<Optional<Animal>> getAnimalById(@PathVariable("id") Integer id){
+    public ResponseEntity<Optional<Animal>> getPetById(@PathVariable("id") Integer id){
         return new ResponseEntity<Optional<Animal>>(animalService.getAnimalById(id), HttpStatus.OK);
     }
 
-    @GetMapping("/all_pets")
+    @GetMapping("/pets")
     public ResponseEntity<List<Animal>> getPets(){
         return new ResponseEntity<List<Animal>>(animalService.getAnimals(), HttpStatus.OK);
     }
